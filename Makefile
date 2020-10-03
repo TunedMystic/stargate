@@ -19,6 +19,14 @@ start:  ## Start the server
 	@DEBUG=True python manage.py runserver 0.0.0.0:8000
 
 test:  ## Run tests
-	@coverage run --source users manage.py test && coverage report --fail-under=20 && coverage xml
+	@coverage run --source users manage.py test && coverage report && coverage xml
+
+lint:  ## Run linting
+	@echo ""
+	@echo "Running isort"
+	@isort --check --diff .
+	@echo ""
+	# @echo "Running flake8"
+	# @flake8
 
 .PHONY: help clean start test
