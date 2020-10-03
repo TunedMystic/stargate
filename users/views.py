@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.conf import settings
 
 
+@login_required(login_url=settings.LOGIN)
 def index(request):
-    # import pdb; pdb.set_trace()
-    return HttpResponse("Hello user, welcome to the dashboard.")
+    return render(request, 'users/dashboard.html')
